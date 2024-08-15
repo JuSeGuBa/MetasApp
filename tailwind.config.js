@@ -10,10 +10,11 @@ module.exports = {
         md: '16px’', 
         lg: '24px’', 
         xl: '48px',
-        // major: '64px'
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-neumorphism')
+  ],
 }
 
