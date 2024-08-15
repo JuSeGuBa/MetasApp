@@ -1,20 +1,25 @@
-import Bond from './bond';
-import './major.css';
-import { ReactComponent as ListSVG } from '../img/list.svg';
-import { ReactComponent as CreateSVG } from '../img/create.svg';
+import styles from "./major.module.css";
+import Bond from "./bond";
+import { ReactComponent as ListSVG } from "../img/list.svg";
+import { ReactComponent as CreateSVG } from "../img/create.svg";
 
 function Major({ Children }) {
   return (
-    <div className='major'>
-      <aside className='aside'>
-        <Bond href="/lista" text="Lista de Metas">
-        <ListSVG className='icon'/>
-        </Bond>
-        <Bond href="/crear" text="Nueva Meta">
-        <CreateSVG className='icon'/>
-        </Bond>
+    <div className={styles.major}>
+      <aside className="styles.aside">
+
+        <Bond 
+        href="/lista" 
+        text="Lista de Metas" 
+        Bond={ListSVG} />
+
+        <Bond 
+        href="/crear" 
+        text="Nueva Meta" 
+        Bond={CreateSVG}/>
+
       </aside>
-      <main className='main'>{Children}</main>
+      <main className="main">{Children}</main>
     </div>
   );
 }

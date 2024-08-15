@@ -1,9 +1,10 @@
+import styles from './bond.module.css';
 
-function Bond({children, text, href}) {
+function Bond({Bond, text, href}) {
     return (
-        <a href={href} className="bond">
-            {children}
-            <span>{text}</span>
+        <a href={href} className={styles.bond}>
+            <Bond className={styles.bond} />
+            {text && <span className={styles.text}>{text}</span>}
         </a>
     );
 }

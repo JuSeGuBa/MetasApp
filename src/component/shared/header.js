@@ -1,18 +1,20 @@
-import "./header.css";
+import styles from"./header.module.css";
 import { ReactComponent as LogoSVG } from '../img/logo.svg'
 import { ReactComponent as UserSVG } from '../img/icon.svg'
+import Bond from "./bond";
 
 function Header() {
   return (
-    <header className="header">
-      <div className="logo">
+    <header className={styles.header}>
+      <div className={styles.logo}>
        <LogoSVG />
-        <a className="titleApp" href="/perfil">Metas App</a>
+        <a className={styles.titleApp} href="/user">Metas App</a>
       </div>
       <nav>
-        <a href="/perfil" className="bond">
-          <UserSVG />
-        </a>
+      <Bond 
+        href="/user" 
+        Bond={UserSVG}
+        />
       </nav>
     </header>
   );

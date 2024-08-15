@@ -6,14 +6,6 @@
     @apply flex items-center pl-4;
 }
 
-.bond {
-    @apply flex items-center px-4 h-xl hover:bg-gray-200;
-}
-
-.icon {
-    @apply h-6 w-6;
-}
-
 .titleApp {
     @apply text-lg font-semibold text-gray-900 uppercase;
 }
