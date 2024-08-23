@@ -1,6 +1,6 @@
 import styles from"./header.module.css";
-import { ReactComponent as LogoSVG } from '../img/logo.svg'
-import { ReactComponent as UserSVG } from '../img/icon.svg'
+import { ReactComponent as LogoSVG } from '../../img/logo.svg';
+import { ReactComponent as UserSVG } from '../../img/icon.svg';
 import Bond from "./bond";
 
 function Header() {
@@ -12,8 +12,8 @@ function Header() {
       </div>
       <nav>
       <Bond 
-        href="/user" 
-        Bond={UserSVG}
+        to="/user" 
+        Icon={UserSVG}
         />
       </nav>
     </header>

@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./Details.module.css";
+import { Context } from "../../../services/memory";
+import { useNavigate } from "react-router-dom";
 
 function Details() {
   const [form, setForm] = useState({
@@ -12,6 +14,8 @@ function Details() {
     completed: 0
   });
 
+  const [state, send] = useContext(Context);
+
   const { details, events, period, icon, goal, term, completed } = form;
 
   const onChange = (event, prop) => {
@@ -22,8 +26,12 @@ function Details() {
     // console.log(form);
   }, [form])
 
+  const browse = useNavigate();
+
   const create = async () => {
-    console.log(form);
+    // console.log(form);
+    send({ type: 'crear', goal: form });
+    browse('/list');
   }
 
   const frequencies = ["dia", "semana", "mes", "año"];
@@ -31,11 +39,11 @@ function Details() {
   return (
     <div className="card">
       <form className="p-4">
-        <label classname="label">
+        <label className="label">
           Decribe tu meta
           <input className="input" placeholder="ej. 52 caminatas" value={details} onChange={e => onChange(e, 'details')}/>
         </label>
-        <label classname="label">
+        <label className="label">
           ¿Con que frecuencia deseas cumplir tu meta?{" "}
           <span>(ej. 1 vez a la semana)</span>
           <div className="flex mb-6">
@@ -47,11 +55,11 @@ function Details() {
             </select>
           </div>
         </label>
-        <label classname="label">
+        <label className="label">
           ¿Cuantas veces deseas completar esta meta?
           <input className="input" type="number" value={goal} onChange={e => onChange(e, 'goal')}/>
         </label>
-        <label classname="label">
+        <label className="label">
           ¿Tienes una fecha limite?
           <input className="input" type="date" value={term} onChange={e => onChange(e, 'term')}/>
         </label>
@@ -59,7 +67,7 @@ function Details() {
           ¿Cuantas veces haz completado ya esta meta?
           <input className="input" type="number" value={completed} onChange={e => onChange(e, 'completed')}/>
         </label>
-        <label classname="label">
+        <label className="label">
           Escoge el icono para la meta
           <select className="input" value={icon} onChange={e => onChange(e, 'icon')}>
             {icons.map((opcion) => (

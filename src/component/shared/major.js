@@ -1,15 +1,15 @@
 import styles from "./major.module.css";
 import Bond from "./bond";
-import { ReactComponent as ListSVG } from "../img/list.svg";
-import { ReactComponent as CreateSVG } from "../img/create.svg";
+import { ReactComponent as listSVG } from "../../img/list.svg";
+import { ReactComponent as createSVG } from "../../img/create.svg";
 
 function Major({ children }) {
   return (
     <div className={styles.major}>
       <aside className={styles.aside}>
-        <Bond href="/lista" text="Lista de Metas" Bond={ListSVG} />
+        <Bond to="/list" text="Lista de Metas" Icon={listSVG} />
 
-        <Bond href="/crear" text="Nueva Meta" Bond={CreateSVG} />
+        <Bond to="/new" text="Nueva Meta" Icon={createSVG} />
       </aside>
       <main className={styles.main}>{children}</main>
     </div>
