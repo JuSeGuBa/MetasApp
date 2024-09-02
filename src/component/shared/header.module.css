@@ -1,11 +1,11 @@
 .header {
-    @apply h-xl flex justify-between shadow bg-white text-gray-700 relative;
+  @apply h-xl flex justify-between shadow bg-white text-gray-700 relative;
 }
 
 .logo {
-    @apply flex items-center pl-4;
+  @apply flex items-center pl-4;
 }
 
 .titleApp {
-    @apply text-lg font-semibold text-gray-900 uppercase;
+  @apply text-lg font-semibold text-gray-900 uppercase;
 }

@@ -4,11 +4,13 @@ import { Context } from "../../../services/memory";
 import { Outlet } from "react-router-dom";
 
 function List() {
-  const [state, send] = useContext(Context);
+  const [state] = useContext(Context);
   return (
     <>
-        {state.order.map(id => <Meta key={id} {...state.objects[id]}></Meta>)}
-        <Outlet></Outlet>
+      {state.order.map((id) => (
+        <Meta key={id} {...state.objects[id]}></Meta>
+      ))}
+      <Outlet></Outlet>
     </>
   );
 }

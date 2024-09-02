@@ -1,44 +1,15 @@
-import { type } from "@testing-library/user-event/dist/type";
 import { createContext, useReducer } from "react";
-import Goal from "../component/shared/List/Goal";
 
-const listMock = [
-  {
-    id: "1",
-    details: "Correr por 30 minutos",
-    period: "dia",
-    events: 1,
-    icon: "🏃",
-    goal: 365,
-    term: "2030-01-01",
-    completed: 5,
-  },
-  {
-    id: "2",
-    details: "Leer libros",
-    period: "año",
-    events: 6,
-    icon: "📚",
-    goal: 12,
-    term: "2030-01-01",
-    completed: 0,
-  },
-  {
-    id: "3",
-    details: "Viajar parques nacionales",
-    period: "mes",
-    events: 1,
-    icon: "✈︎",
-    goal: 60,
-    term: "2030-01-01",
-    completed: 40,
-  },
-];
-
+// const memory = localStorage.getItem('goals');
 const stateInitial = {
   order: [],
   objects: {},
 };
+//   ? JSON.parse(memory)
+//   : {
+//     order: [],
+//     objects: {}
+// };
 
 function reducer(state, action) {
   switch (action.type) {
@@ -47,33 +18,59 @@ function reducer(state, action) {
       const newState = {
         order: goals.map((goal) => goal.id),
         objects: goals.reduce(
-          (object, goal) => ({ ...object, [goal.id]: goal }),
+          (object, goal) => ({
+            ...object,
+            [goal.id]: goal,
+          }),
           {}
         ),
       };
+      // localStorage.setItem('goals', JSON.stringify(newState))
       return newState;
     }
     case "crear": {
-      const id = Math.random(); // action.goals;
+      const id = action.goal.id; // String(Math.random());
       const newState = {
         order: [...state.order, id],
         objects: {
-            ...state.objects,
-            [id]: action.goal
-        }
+          ...state.objects,
+          [id]: action.goal,
+        },
       };
-      console.log(newState);
+
+      // localStorage.setItem('goals', JSON.stringify(newState))
       return newState;
     }
+    case "actualizar": {
+      const id = action.goal.id;
+      state.objects[id] = {
+        ...state.objects[id],
+        ...action.goal,
+      };
+      const newState = { ...state };
+      // localStorage.setItem('goals', JSON.stringify(newState))
+      return newState;
+    }
+    case "borrar": {
+      const id = action.id;
+      const newOrder = state.order.filter((item) => item !== id);
+      delete state.objects[id];
+      const newState = {
+        order: newOrder,
+        objects: state.objects,
+      };
+      // localStorage.setItem('goals', JSON.stringify(newState))
+      return newState;
+    }
+    default:
+      throw new Error();
   }
 }
-
-const goals = reducer(stateInitial, { type: "colocar", goals: listMock });
 
 export const Context = createContext(null);
 
 function Memory({ children }) {
-  const [state, send] = useReducer(reducer, goals);
+  const [state, send] = useReducer(reducer, stateInitial);
   return <Context.Provider value={[state, send]}>{children}</Context.Provider>;
 }
 
