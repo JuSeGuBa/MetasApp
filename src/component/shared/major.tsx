@@ -1,9 +1,14 @@
+import React from "react";
 import styles from "./major.module.css";
 import Bond from "./bond";
 import { ReactComponent as listSVG } from "../../img/list.svg";
 import { ReactComponent as createSVG } from "../../img/create.svg";
 
-function Major({ children }) {
+interface MajorProps {
+  children: React.ReactNode;
+}
+
+function Major({ children }: MajorProps) {
   return (
     <div className={styles.major}>
       <aside className={styles.aside}>

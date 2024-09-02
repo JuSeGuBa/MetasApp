@@ -1,3 +1,4 @@
+import React from "react";
 import { useContext } from "react";
 import Meta from "./Goal";
 import { Context } from "../../../services/memory";

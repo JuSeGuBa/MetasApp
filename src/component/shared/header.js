@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./header.module.css";
 import { ReactComponent as LogoSVG } from "../../img/logo.svg";
 import { ReactComponent as UserSVG } from "../../img/icon.svg";

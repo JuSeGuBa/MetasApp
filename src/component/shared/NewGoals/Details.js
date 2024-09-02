@@ -1,3 +1,4 @@
+import React from "react";
 import { useContext, useEffect, useState } from "react";
 import styles from "./Details.module.css";
 import { Context } from "../../../services/memory";
@@ -48,7 +49,8 @@ function Details() {
   };
 
   const eliminate = async () => {
-    const idDelete = await deleteGoal();
+    const idDelete = form.id;
+    await deleteGoal(id);
     send({ type: "borrar", id: idDelete });
     browse("/list");
   };
